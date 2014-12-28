@@ -1,4 +1,44 @@
-name: personnal website
-markdown: redcarpet
-pygments: true
-timezone: Europe/Paris
+# Site wide configuration
+
+title:            T3ch n0tes
+locale:           fr_FR
+url:              http://bbouille.githb.io
+
+# Jekyll configuration
+
+permalink:   /:categories/:title/
+markdown:    kramdown
+highlighter: pygments
+sass:
+  sass_dir: _sass
+  style: compressed
+gems:
+  - jekyll-sitemap
+
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: false
+
+
+# Site owner
+owner:
+  name: Benjamin Bouillé
+  avatar: bio-pic.jpeg
+  bio: "IT consultant"
+  email: bbouille@gmail.com
+  twitter: bbouille
+  google:
+    plus: BenjaminBouillé
+    analytics: UA-39567970-1
+    verify: 
+    ad-client: 
+    ad-slot: 
+  github: bbouille
+  stackoverflow: 439036/benjamin-bouill%C3%A9
+  linkedin: bbouille
+
+include: [".htaccess"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
