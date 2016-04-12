@@ -5,23 +5,25 @@ permalink: /2016/02/23/letsencrypt-for-nessus/
 tags: [certificate, letsencrypt, nessus]
 ---
 
-Environment :
-- Debian 7.x (x64) via [OVH Virtual Private Server (VPS)](https://www.ovh.com)
-- [Nessus Home (v6.5.5)](https://www.tenable.com/products/nessus-home)
-- [Certificate provider](https://letsencrypt.org/certificates)
+The installation of LetsEncrypt tool is incredibly fast with git ! The certificate generation is really simple and the deployment in nessus application is straightforward. 
+Notes inspired by this [post](http://jerrygamblin.com/2015/11/04/letsencrypt-org-tls-certificate-with-nessus/).
 
-The installation of LetsEncrypt tool is incredibly fast with git ! The certificate generation is really simple and the deployment in nessus application is straightforward.
+## Environment
 
-### Get LetsEncrypt tool
+  * OVH Virtual Private Server [(VPS)](https://www.ovh.com) with Debian 7.x (x64) OS
+  * [Nessus Home (v6.5.5)](https://www.tenable.com/products/nessus/select-your-operating-system) : download the "Nessus Home" version for Debian 6 and 7 / Kali Linux 1 AMD64
+  * [letsencrypt.org](https://letsencrypt.org/certificates) : a free certificate provider without registration
 
-From your home directory :
+## Get LetsEncrypt tool
+
+On the OVH server, clone the `letsencrypt` repository in your home directory:
 
 ```bash
 cd ~
 git clone https://github.com/letsencrypt/letsencrypt
 ```
 
-### Generate the certificate
+## Generate the certificate
 
 Stop the nessus deamon :
 
@@ -29,16 +31,16 @@ Stop the nessus deamon :
 /etc/init.d/nessusd stop
 ```
 
-Generate a new certificate with LetsEncrypt assistant :
+Generate a new certificate with LetsEncrypt assistant:
 
 ```bash
 cd ~/letsencrypt
 ./letsencrypt-auto --agree-dev-preview --server https://acme-v01.api.letsencrypt.org/directory auth
 ```
 
-### Deploy the certificate
+## Deploy the certificate
 
-Copy the following files with root priviledges :
+Copy the following files with root priviledges using `sudo` :
 
 ```bash
 sudo cp -i /etc/letsencrypt/live/scan.bbouille.eu/fullchain.pem /opt/nessus/com/nessus/CA/servercert.pem
@@ -52,11 +54,11 @@ Then restart the nessus daemon :
 /etc/init.d/nessusd start
 ```
 
-Check the result :
+## Result
 
+Connect to the nessus web application and check the certificate :
 ![Cert deployed](/images/scan-cert.png)
 
-Reference :
-[1]: http://static.tenable.com/documentation/nessus_6.4_installation_guide.pdf
-[2]: http://jerrygamblin.com/2015/11/04/letsencrypt-org-tls-certificate-with-nessus/
+## Limitation
 
+Please note that your certificate has a short life span : Let’s Encrypt CA issues short-lived certificates (90 days). See the documentation to renew the certificate : [https://letsencrypt.readthedocs.org/en/latest/using.html#renewal](https://letsencrypt.readthedocs.org/en/latest/using.html#renewal)
