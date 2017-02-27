@@ -9,8 +9,8 @@ image:
   creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 ---
 
-Deeply involved into SOGETI ITSEF and complex systems development, I gained a valuable experience in risk analysis, product security design an software development. Open source enthusiast, I focus on data processing, system security and user experience.
+Currently managing the Big Data security offer at Devoteam, I have a background in complex system development and IT security evaluation. I gained a valuable experience in risk analysis, security model and conformance consulting the past few year with Capgemini.
 
 ## About this blog
 
-This blog is a collection of my tech notes (how to, tutorials etc.).
+This blog is a collection of notes (how to, tutorials etc.) inspired by my experiences with new IT stuff.
